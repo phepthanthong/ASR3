@@ -16,7 +16,8 @@ int main ()
     exit(0);
   } else {
     // le pere boucle...
-    wait(0);
+    //wait(0);
+    //kill(getppid(),SIGTERM);
     while (1) pause();
   }
 }
