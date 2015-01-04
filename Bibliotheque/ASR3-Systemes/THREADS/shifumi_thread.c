@@ -5,6 +5,12 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <time.h> // pour le random
+#include <pthread.h>
+
+void * joueur(void * int)
+{
+
+}
 
 int aleatoire()
 {

@@ -6,16 +6,19 @@
 #define NB_THREADS 10
 #define MAX 20000
 
- int cpt;
-
+int cpt;
+pthread_mutex_t mutex;
 void *f_thread(void *arg)
 {
   int id=(int)arg;
   int i;
+  
   for(i=0;i<MAX;i++) {
-	  cpt++;
+    pthread_mutex_lock(&mutex);
+    cpt++;
+    pthread_mutex_unlock(&mutex);
   }
-
+  
   return (void*)id;
 }
 

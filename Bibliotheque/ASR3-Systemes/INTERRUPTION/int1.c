@@ -39,6 +39,6 @@ void arret () {
 
 void interruption () {
 
-	signal(SIGINT, interruption);	
+  //signal(SIGINT, interruption);	
 	cmpt++;
 }

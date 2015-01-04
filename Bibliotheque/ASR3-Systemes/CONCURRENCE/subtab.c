@@ -10,6 +10,7 @@
 
 int tab[MAX];
 int sum;
+pthread_mutex_t m;
 
 void *f_thread(void *arg)
 {
@@ -24,9 +25,17 @@ void *f_thread(void *arg)
 
   printf("thread %d : de %d à %d\n", id, borne_min, borne_max);
 
+  int sum_thread = 0;
+  
   for(i=borne_min;i<borne_max;i++) {
-	  sum+=tab[i];
+    
+    sum_thread += tab[i];
   }
+  
+  pthread_mutex_lock(&m);
+  sum += sum_thread;
+  pthread_mutex_unlock(&m);
+  
   return (void*)id;
 }
 
@@ -50,6 +59,7 @@ int main(int argc, char**argv)
 
   gettimeofday(&tv1,NULL);
 
+  pthread_mutex_init(&m,NULL);
   for(i=0;i<NB_THREADS;i++) 
   {
     int ret = pthread_create(&tid[i], NULL, f_thread, (void*)i);
@@ -67,7 +77,7 @@ int main(int argc, char**argv)
       return 1;
     }
   }
-
+  pthread_mutex_destroy(&m);
   gettimeofday(&tv2,NULL);
 
   printf("sum vaut %d\n", sum);

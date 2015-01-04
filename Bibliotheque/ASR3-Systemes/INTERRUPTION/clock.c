@@ -43,6 +43,7 @@ static char	SCCS[] = "@(#)clock.c	1.4 4/30/88 09:04:54";
 #define	DAY_LINE	0	/* screen location for display elements */
 #define	DATE_LINE	8
 #define	TIME_LINE	16
+#define ALARM_LINE      24
 
 
 /* global data */
@@ -50,7 +51,7 @@ char		time_buf[24];	/* local time as a string */
 struct tm	*time_tm;	/* local time as a structure */
 
 /* forward references */
-void		put_scr(), do_time(), do_date(), blammo(), end_win(), exit();
+void		put_scr(), do_time(), do_date(), blammo(), end_win(), exit(), turnOnAlarme();
 int		cat_int();
 unsigned	sleep();
 extern FILE	*popen();
@@ -67,7 +68,17 @@ main()
         blammo("curses initialization failed", 0);
 
     signal(SIGINT, (void *)cat_int);	/* provide an exit path */
-    signal(SIGTERM, (void *)cat_int);
+    signal(SIGTERM, (void *)cat_int);    
+
+    /*if (seconde == 1)
+      {
+	signal(SIGALRM, turnOnAlarme);
+	//seconde=atoi(argv[1]);
+      }	
+    else
+      {
+
+      }*/
     clear();			/* setup */
     noecho();
 
@@ -208,4 +219,9 @@ int	cat_int()
 {
     end_win();
     exit(0);
+}
+
+void turnOnAlarme()
+{
+  put_scr(ALARM_LINE,"Reveil");
 }
