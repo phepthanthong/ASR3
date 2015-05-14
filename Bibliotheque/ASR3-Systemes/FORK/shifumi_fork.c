@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
 	}
       if (retour == 0)
 	{	  
-	  /*if (aleatoire() == 0)
+	  if (aleatoire() == 0)
 	    {
 	      fprintf(stdout, "Processus numero %d joue PIERRE \n",getpid());
 	      exit(0);
@@ -49,8 +49,7 @@ int main(int argc, char *argv[])
 	    {	    
 	      fprintf(stdout, "Processus numero %d joue PAPIER \n",getpid());
 	      exit(2);
-	      }*/
-	  execl("joueur", "joueur", NULL);
+	      }	  
 	}
     }
   

@@ -33,23 +33,7 @@ int main(int argc, char *argv[])
 	  exit(EXIT_FAILURE);
 	}
       if (retour == 0)
-	{	  
-	  /*if (aleatoire() == 0)
-	    {
-	      fprintf(stdout, "Processus numero %d joue PIERRE \n",getpid());
-	      exit(0);
-	    }
-	  if (aleatoire() == 1)
-	    {
-	      fprintf(stdout, "Processus numero %d joue CISEAUX \n",getpid());
-	      exit(1);
-	    }
-	  
-	  if (aleatoire() == 2)
-	    {	    
-	      fprintf(stdout, "Processus numero %d joue PAPIER \n",getpid());
-	      exit(2);
-	      }*/
+	{	  	  
 	  execl("joueur", "joueur", NULL);
 	}
     }
